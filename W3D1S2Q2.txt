@@ -1,0 +1,46 @@
+W3D1S2Q2
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple OOP in JavaScript</title>
+</head>
+<body>
+    <h1>Create Your Gifts Basket</h1>
+    <form id="form">
+        <label for="fruits">Fruits (comma-seperated values):</label>
+        <input type="text" id="fruits" placeholder="Enter fruits" required>
+
+        <label for="fruits">Snacks (comma-seperated values):</label>
+        <input type="text" id="snacks" placeholder="Enter snacks" required>
+
+        <label for="fruits">Fruits (comma-seperated values):</label>
+        <input type="text" id="beverages" placeholder="Enter beverages" required>
+
+        <button type="submit">Submit</button>
+    </form>
+    <p>Selected Items:<span id="result"></span></p>
+        <script src="script.js"></script>
+   <!-- write your code here -->
+</body>
+</html>
+
+
+document.addEventListener('DOMContentLoaded', ()=>{
+    const form = document.getElementById('form')
+
+
+    form.addEventListener('submit',(e)=>{
+        e.preventDefault()
+        const fruits = document.getElementById('fruits').value.split(',').map(item=> item.trim())
+        const snacks = document.getElementById('snacks').value.split(',').map(item=> item.trim())
+        const beverages = document.getElementById('beverages').value.split(',').map(item=> item.trim())
+        const res=document.getElementById('result')
+
+        const finalItems = [...fruits, ...snacks, ...beverages]
+
+        res.textContent = finalItems.join(', ')
+    })
+})

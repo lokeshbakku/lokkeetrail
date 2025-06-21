@@ -1,0 +1,89 @@
+W3D1S1Q3
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ny Recipe Book</title>
+  <style>
+    #recipe-form{
+      background-color: rgb(255,255,255);
+      box-shadow: 5px 5px 5px rgba(68,68,68,0.6);
+      padding: 20px;
+      width: 300px;
+      margin: 30px auto;
+    }
+    #recipe-form input, #recipe-form textarea{
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 8px;
+    }
+    #recipe-form button{
+      background-color: #007bff;
+      color: white;
+      padding: 10px;
+      width: 100%;
+      border: none;
+      cursor: pointer;
+    }
+    #recipe-list{
+      margin-top: 20px;
+      width: 300px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .recipe-item{
+      background-color: #f3f3f3;
+      padding: 10pd;
+      margin-bottom: 10px;
+    }
+    .recipe-name{
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>My Recipe Book</h1>
+  <div id="recipe-form">
+    <input type="text" id="recipe-name" placeholder="Recipe Name"/>
+    <input type="text" id="ingredients" placeholder="Ingredients"/>
+    <textarea id="instructions" placeholder="Instructions"></textarea>
+    <button id="add-recipe-button">Add Recipe</button>
+  </div>
+  <div id="recipe-list"></div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", ()=>{
+      const recipeNameInput = document.getElementById("recipe-name")
+      const ingredientsInput = document.getElementById("ingredients")
+      const instructionsInput = document.getElementById("instructions")
+      const addButton = document.getElementById("add-recipe-button")
+      const recipeList = document.getElementById("recipe-list")
+
+      function renderRecipe(name, ingredients, instructions){
+        const item = document.createElement("div")
+        item.classList.add("recipe-item")
+        item.innerHTML = `
+        <div class="recipe-name">${name}</div>
+        <div><strong>Ingredients:</strong>${ingredients}</div>
+        <div><strong>Instructions:</strong>${instructions}</div>
+        `;
+        recipeList.appendChild(item)
+      }
+      addButton.addEventListener("click", ()=>{
+        const name = recipeNameInput.value.trim()
+        const ingredients = ingredientsInput.value.trim()
+        const instructions = instructionsInput.value.trim()
+        if(name && ingredients && instructions){
+          renderRecipe(name, ingredients, instructions)
+          recipeNameInput.value = ""
+          ingredientsInput.value = ""
+          instructionsInput.value = ""
+        }
+      })
+    })
+  </script>
+
+</body>
+</html>

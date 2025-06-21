@@ -1,0 +1,60 @@
+W3D1S3Q3
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        #message{
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h2>LOGIN FORM</h2>
+        <label for="name">Username:</label>
+        <input type="text" id="username"><br><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password"><br><br>
+        <button id="login">Login</button>
+        <div id="message"></div>
+    </div>
+    <script src="script.js"></script>
+
+</body>
+</html>
+
+---------js--------------
+class LoginForm{
+    constructor(){
+        this.usernameInput = document.getElementById('username')
+        this.passwordInput = document.getElementById('password')
+        this.mD = document.getElementById('message')
+        this.loginBtn = document.getElementById('login')
+        this.loginBtn.addEventListener('click', ()=>this.validate())
+    }
+    validate(){
+        const username = this.usernameInput.value.trim()
+        const password = this.passwordInput.value.trim()
+
+        if(!username && !password){
+            this.showMessage('Please enter your details', '#ff0000')
+        } else if(!username){
+            this.showMessage('Username cannot be empty', '#ff0000')
+        } else if(!password){
+            this.showMessage('Password cannot be empty', '#ff0000')
+        } else{
+            this.showMessage('Logged in successfully', '#008000')
+        }
+    }
+
+    showMessage(text, color){
+        this.mD.textContent = text
+        this.mD.style.color = color
+    }
+
+}
+new LoginForm()

@@ -1,0 +1,48 @@
+W3D1S2Q3
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple OOP in JavaScript</title>
+</head>
+<body>
+    <form id="form">
+        <label for="num1">Number 1:</label>
+        <input type="text" id="number1" required>
+
+        <label for="num2">Number 2:</label>
+        <input type="text" id="number2" required>
+
+        <label for="num3">Number 3:</label>
+        <input type="text" id="number3" required>
+
+        <button type="submit">Calculate Average</button>
+    </form>
+    <p>Average:<span id="result"></span></p>
+    <script src="script.js"></script>
+   <!-- write your code here -->
+</body>
+</html>
+
+
+document.addEventListener('DOMContentLoaded',()=>{
+    const form = document.getElementById('form')
+    const result = document.getElementById('result')
+
+    function calculateAverage(...numbers){
+        const sum = numbers.reduce((acc, curr)=> acc+curr, 0)
+        return sum/numbers.length
+    }
+    form.addEventListener('submit',(e)=>{
+        e.preventDefault()
+        const n1 = parseFloat(document.getElementById('number1').value)
+        const n2 = parseFloat(document.getElementById('number2').value)
+        const n3 = parseFloat(document.getElementById('number3').value)
+
+        const average = calculateAverage(...[n1,n2,n3])
+
+        result.textContent = average.toFixed(2)
+    })
+})
